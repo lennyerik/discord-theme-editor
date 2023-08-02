@@ -1,0 +1,55 @@
+import { VerticalBox , HorizontalBox, StandardButton, CheckBox} from "std-widgets.slint";
+import { CSSProperty } from "css-property.slint";
+import { Helpers } from "helpers.slint";
+export { Helpers }
+
+export component MainWindow inherits Window {
+    title: "Discord Theme Editor";
+    icon: @image-url("../res/icon.png");
+    min-width: 800px;
+    min-height: 600px;
+
+    property <bool> show-preview: true;
+
+    HorizontalBox {
+        VerticalBox {
+            max-width: 500px;
+
+            alignment: start;
+            CSSProperty {
+                name: "Background Colour";
+                colour-h: 0.0;
+                colour-s: 1.0;
+                colour-v: 1.0;
+            }
+            CSSProperty {
+                name: "Background Colour (Inverse)";
+                colour-h: 0.0;
+                colour-s: 1.0;
+                colour-v: 1.0;
+            }
+        }
+
+        VerticalBox {
+            if show-preview : Image {
+                source: @image-url("../res/discord.svg");
+            }
+            VerticalBox {
+                alignment: end;
+                HorizontalBox {
+                    alignment: end;
+                    CheckBox {
+                        text: "Show Preview";
+                        checked <=> show-preview;
+                    }
+                    StandardButton {
+                        kind: reset;
+                    }
+                    StandardButton {
+                        kind: apply;
+                    }
+                }
+            }
+        }
+    }
+}

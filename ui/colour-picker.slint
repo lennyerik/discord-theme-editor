@@ -1,0 +1,90 @@
+import { VerticalBox, Slider } from "std-widgets.slint";
+import { Helpers } from "helpers.slint";
+
+component PickerHandle inherits Rectangle {
+    border-radius: self.height / 2;
+    border-width: 2px;
+    border-color: #999;
+    background: #fff;
+}
+
+component ColourMap inherits Rectangle {
+    in property <float> hue: 0.0;
+    in-out property <float> saturation: 0;
+    in-out property <float> value: 0;
+
+    min-height: 200px;
+    vertical-stretch: 1;
+    horizontal-stretch: 1;
+
+    background: Helpers.hsv(hue, 1.0, 1.0);
+
+    Image {
+        width: 100%;
+        height: 100%;
+        source: @image-url("../res/saturation_value_gradient.png");
+    }
+
+    handle := PickerHandle {
+        width: 24px;
+        height: self.width;
+        background: Helpers.hsv(hue, saturation, value);
+        x: saturation * (root.width - self.width);
+        y: (1.0 - value) * (root.height - self.height);
+    }
+
+    touch := TouchArea {
+        moved => {
+            saturation = max(min((touch.mouse-x - handle.width / 2) / (root.width - handle.width), 1.0), 0.0);
+            value = 1 - max(min((touch.mouse-y - handle.height / 2) / (root.height - handle.height), 1.0), 0.0);
+        }
+    }
+}
+
+component HueSlider inherits Rectangle {
+    in-out property <float> hue: 0;
+
+    border-radius: self.height/2;
+    border-width: 1px;
+    border-color: #999;
+
+    min-height: 24px;
+    min-width: 100px;
+    horizontal-stretch: 1;
+    vertical-stretch: 0;
+
+    background: @linear-gradient(90deg, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0));
+
+    handle := PickerHandle{
+        width: self.height;
+        height: parent.height;
+        x: hue * (root.width - self.width);
+    }
+
+    touch := TouchArea {
+        moved => {
+            hue = max(min((touch.mouse-x - handle.width / 2) / (root.width - handle.width), 1.0), 0.0);
+        }
+    }
+}
+
+export component ColourPicker inherits Rectangle {
+    in-out property <float> hue: 0;
+    in-out property <float> saturation: 0;
+    in-out property <float> value: 0;
+    // out property <color> colour: Helpers.hsv(hue, saturation, value);
+
+    background: #444;
+    border-radius: 6px;
+
+    VerticalBox {
+        ColourMap {
+            hue: hue;
+            saturation <=> saturation;
+            value <=> value;
+        }
+        HueSlider {
+            hue <=> hue;
+        }
+    }
+}

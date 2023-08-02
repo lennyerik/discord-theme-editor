@@ -1,0 +1,80 @@
+import { VerticalBox, HorizontalBox, StandardButton, Button} from "std-widgets.slint";
+import { ColourPicker } from "colour-picker.slint";
+import { Helpers } from "helpers.slint";
+
+export component CSSProperty {
+    in property <string> name: "";
+
+    in-out property <float> colour-h: 0;
+    in-out property <float> colour-s: 0;
+    in-out property <float> colour-v: 0;
+    out property <color> colour: Helpers.hsv(colour-h, colour-s, colour-v);
+
+    out property <bool> custom-css-active: false;
+    out property <string> custom-css-value: "";
+
+    VerticalBox {
+        alignment: start;
+        Text {
+            text: name;
+            font-size: 10pt;
+            font-weight: 800;
+            wrap: word-wrap;
+        }
+        HorizontalBox {
+            if custom-css-active : TextInput {
+                min-width: 100px;
+                text <=> custom_css_value;
+                font-size: 10pt;
+                horizontal-stretch: 1;
+                vertical-alignment: center;
+                Rectangle {
+                    x: -5px;
+                    width: parent.width + 10px;
+                    border-color: parent.has_focus ? #fff : #888;
+                    border-width: 2px;
+                    border-radius: 5px;
+                }
+            }
+            if !custom-css-active : Rectangle {
+                min-width: 100px;
+                background: colour;
+                border-radius: 2px;
+                horizontal-stretch: 1;
+                touch := TouchArea {
+                    clicked => { picker-popup.show(); }
+                }
+                if touch.has-hover : Text {
+                    text: Helpers.hex(colour);
+                    color: colour-v > 0.5 ? #000 : #fff;
+                    font-size: 9pt;
+                }
+                picker-popup := PopupWindow {
+                    x: 0;
+                    y: parent.height + 5px;
+                    min-width: max(200px, parent.width);
+                    min-height: 300px;
+                    close-on-click: false;
+                    picker := ColourPicker {
+                        hue <=> colour-h;
+                        saturation <=> colour-s;
+                        value <=> colour-v;
+                    }
+                }
+            }
+            Button {
+                icon: custom-css-active ? @image-url("../res/palette.svg") : @image-url("../res/pen.svg");
+                clicked => {
+                    custom-css-active = !custom-css-active;
+                    if (custom-css-active) {
+                        custom-css-value = "hsv(" +
+                            round(colour-h * 360) +", " +
+                            round(colour-s * 100) + ", " +
+                            round(colour-v * 100) + ")";
+                    }
+                }
+                horizontal-stretch: 0;
+            }
+        }
+    }
+}
