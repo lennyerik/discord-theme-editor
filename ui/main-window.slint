@@ -1,7 +1,7 @@
-import { VerticalBox , HorizontalBox, StandardButton, CheckBox} from "std-widgets.slint";
-import { CSSProperty } from "css-property.slint";
+import { VerticalBox , HorizontalBox, StandardButton, CheckBox, Button, ScrollView} from "std-widgets.slint";
+import { CSSThemeProperty, Theme, ThemeControls } from "theme.slint";
 import { Helpers } from "helpers.slint";
-export { Helpers }
+export { CSSThemeProperty, Theme, Helpers }
 
 export component MainWindow inherits Window {
     title: "Discord Theme Editor";
@@ -10,27 +10,56 @@ export component MainWindow inherits Window {
     min-height: 600px;
 
     property <bool> show-preview: true;
+    property <string> error-message: "An error has occurred";
 
-    HorizontalBox {
-        VerticalBox {
-            max-width: 500px;
+    callback reset-theme-to-default();
+    callback load-theme();
+    callback save-theme(Theme);
+    callback apply-theme(Theme);
 
-            alignment: start;
-            CSSProperty {
-                name: "Background Colour";
-                colour-h: 0.0;
-                colour-s: 1.0;
-                colour-v: 1.0;
+    public function show-error-dialog(message: string) {
+        error-message = message;
+        error-popup.show();
+    }
+
+    public function set-current-theme(theme: Theme) {
+        theme-controls.set-theme(theme);
+    }
+
+    error-popup := PopupWindow {
+        width: 200px;
+        height: 100px;
+        x: root.width / 2 - 100px;
+        y: root.height / 2 - 50px;
+        close-on-click: false;
+
+        Rectangle {
+            background: root.background;
+            border-color: root.background.brighter(150%);
+            border-width: 2px;
+        }
+        Dialog {
+            width: 100%;
+            height: 100%;
+            padding-top: 15px;
+            Text {
+                text: error-message;
+                font-size: 12pt;
             }
-            CSSProperty {
-                name: "Background Colour (Inverse)";
-                colour-h: 0.0;
-                colour-s: 1.0;
-                colour-v: 1.0;
+            StandardButton {
+                kind: ok;
+                clicked => { error-popup.close(); }
             }
         }
+    }
+
+    HorizontalBox {
+        theme-controls := ThemeControls {
+            window-height: root.height;
+        } 
 
         VerticalBox {
+            horizontal-stretch: 1;
             if show-preview : Image {
                 source: @image-url("../res/discord.svg");
             }
@@ -42,11 +71,21 @@ export component MainWindow inherits Window {
                         text: "Show Preview";
                         checked <=> show-preview;
                     }
-                    StandardButton {
-                        kind: reset;
+                    Button {
+                        text: "Reset to default";
+                        clicked => { reset-theme-to-default(); }
+                    }
+                    Button {
+                        text: "Load";
+                        clicked => { load-theme(); }
+                    }
+                    Button {
+                        text: "Save";
+                        clicked => { save-theme(theme-controls.theme); }
                     }
                     StandardButton {
                         kind: apply;
+                        clicked => { apply-theme(theme-controls.theme); }
                     }
                 }
             }

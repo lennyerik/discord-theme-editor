@@ -1,0 +1,180 @@
+import { VerticalBox, ScrollView} from "std-widgets.slint";
+import { ScrollView } from "std-widgets.slint";
+import { CSSProperty } from "css-property.slint";
+
+@rust-attr(derive(serde::Serialize, serde::Deserialize))
+export struct CSSThemeProperty {
+    colour-h: float,
+    colour-s: float,
+    colour-v: float,
+    custom-css-active: bool,
+    custom-css-value: string,
+}
+
+@rust-attr(derive(serde::Serialize, serde::Deserialize))
+export struct Theme {
+    background-primary: CSSThemeProperty,
+    background-secondary: CSSThemeProperty,
+    background-tertiary: CSSThemeProperty,
+    text-primary: CSSThemeProperty,
+    text-muted: CSSThemeProperty,
+    text-hyperlink: CSSThemeProperty,
+    header-primary: CSSThemeProperty,
+    header-secondary: CSSThemeProperty,
+}
+
+export component ThemeControls inherits ScrollView {
+    // Respect the content's min width and account for the scrollbar
+    min-width: content.min-width + 30px;
+
+    // TODO: I don't think there currently is a better way to do this in slint
+
+    out property <Theme> theme: {
+        background-primary: {
+            colour-h: background-primary.colour-h,
+            colour-s: background-primary.colour-s,
+            colour-v: background-primary.colour-v,
+            custom-css-active: background-primary.custom-css-active,
+            custom-css-value: background-primary.custom-css-value,
+        },
+        background-secondary: {
+            colour-h: background-secondary.colour-h,
+            colour-s: background-secondary.colour-s,
+            colour-v: background-secondary.colour-v,
+            custom-css-active: background-secondary.custom-css-active,
+            custom-css-value: background-secondary.custom-css-value,
+        },
+        background-tertiary: {
+            colour-h: background-tertiary.colour-h,
+            colour-s: background-tertiary.colour-s,
+            colour-v: background-tertiary.colour-v,
+            custom-css-active: background-tertiary.custom-css-active,
+            custom-css-value: background-tertiary.custom-css-value,
+        },
+        text-primary: {
+            colour-h: text-primary.colour-h,
+            colour-s: text-primary.colour-s,
+            colour-v: text-primary.colour-v,
+            custom-css-active: text-primary.custom-css-active,
+            custom-css-value: text-primary.custom-css-value,
+        },
+        text-muted: {
+            colour-h: text-muted.colour-h,
+            colour-s: text-muted.colour-s,
+            colour-v: text-muted.colour-v,
+            custom-css-active: text-muted.custom-css-active,
+            custom-css-value: text-muted.custom-css-value,
+        },
+        text-hyperlink: {
+            colour-h: text-hyperlink.colour-h,
+            colour-s: text-hyperlink.colour-s,
+            colour-v: text-hyperlink.colour-v,
+            custom-css-active: text-hyperlink.custom-css-active,
+            custom-css-value: text-hyperlink.custom-css-value,
+        },
+        header-primary: {
+            colour-h: header-primary.colour-h,
+            colour-s: header-primary.colour-s,
+            colour-v: header-primary.colour-v,
+            custom-css-active: header-primary.custom-css-active,
+            custom-css-value: header-primary.custom-css-value,
+        },
+        header-secondary: {
+            colour-h: header-secondary.colour-h,
+            colour-s: header-secondary.colour-s,
+            colour-v: header-secondary.colour-v,
+            custom-css-active: header-secondary.custom-css-active,
+            custom-css-value: header-secondary.custom-css-value,
+        },
+    };
+
+    public function set-theme(theme: Theme) {
+        background-primary.colour-h = theme.background-primary.colour-h;
+        background-primary.colour-s = theme.background-primary.colour-s;
+        background-primary.colour-v = theme.background-primary.colour-v;
+        background-primary.custom-css-active = theme.background-primary.custom-css-active;
+        background-primary.custom-css-value = theme.background-primary.custom-css-value;
+
+        background-secondary.colour-h = theme.background-secondary.colour-h;
+        background-secondary.colour-s = theme.background-secondary.colour-s;
+        background-secondary.colour-v = theme.background-secondary.colour-v;
+        background-secondary.custom-css-active = theme.background-secondary.custom-css-active;
+        background-secondary.custom-css-value = theme.background-secondary.custom-css-value;
+
+        background-tertiary.colour-h = theme.background-tertiary.colour-h;
+        background-tertiary.colour-s = theme.background-tertiary.colour-s;
+        background-tertiary.colour-v = theme.background-tertiary.colour-v;
+        background-tertiary.custom-css-active = theme.background-tertiary.custom-css-active;
+        background-tertiary.custom-css-value = theme.background-tertiary.custom-css-value;
+
+        text-primary.colour-h = theme.text-primary.colour-h;
+        text-primary.colour-s = theme.text-primary.colour-s;
+        text-primary.colour-v = theme.text-primary.colour-v;
+        text-primary.custom-css-active = theme.text-primary.custom-css-active;
+        text-primary.custom-css-value = theme.text-primary.custom-css-value;
+
+        text-muted.colour-h = theme.text-muted.colour-h;
+        text-muted.colour-s = theme.text-muted.colour-s;
+        text-muted.colour-v = theme.text-muted.colour-v;
+        text-muted.custom-css-active = theme.text-muted.custom-css-active;
+        text-muted.custom-css-value = theme.text-muted.custom-css-value;
+
+        text-hyperlink.colour-h = theme.text-hyperlink.colour-h;
+        text-hyperlink.colour-s = theme.text-hyperlink.colour-s;
+        text-hyperlink.colour-v = theme.text-hyperlink.colour-v;
+        text-hyperlink.custom-css-active = theme.text-hyperlink.custom-css-active;
+        text-hyperlink.custom-css-value = theme.text-hyperlink.custom-css-value;
+
+        header-primary.colour-h = theme.header-primary.colour-h;
+        header-primary.colour-s = theme.header-primary.colour-s;
+        header-primary.colour-v = theme.header-primary.colour-v;
+        header-primary.custom-css-active = theme.header-primary.custom-css-active;
+        header-primary.custom-css-value = theme.header-primary.custom-css-value;
+
+        header-secondary.colour-h = theme.header-secondary.colour-h;
+        header-secondary.colour-s = theme.header-secondary.colour-s;
+        header-secondary.colour-v = theme.header-secondary.colour-v;
+        header-secondary.custom-css-active = theme.header-secondary.custom-css-active;
+        header-secondary.custom-css-value = theme.header-secondary.custom-css-value;
+    }
+
+    in property <length> window-height;
+
+    content := VerticalBox {
+        max-width: 500px;
+
+        alignment: start;
+        background-primary := CSSProperty {
+            name: "Background Primary";
+            window-height: window-height;
+        }
+        background-secondary := CSSProperty {
+            name: "Background Secondary";
+            window-height: window-height;
+        }
+        background-tertiary := CSSProperty {
+            name: "Background Tertiary";
+            window-height: window-height;
+        }
+        text-primary := CSSProperty {
+            name: "Text Primary";
+            window-height: window-height;
+        }
+        text-muted := CSSProperty {
+            name: "Text Muted";
+            window-height: window-height;
+        }
+        text-hyperlink := CSSProperty {
+            name: "Text Hyperlink";
+            window-height: window-height;
+        }
+        header-primary := CSSProperty {
+            name: "Header Primary";
+            window-height: window-height;
+        }
+        header-secondary := CSSProperty {
+            name: "Header Secondary";
+            window-height: window-height;
+        }
+    }
+}

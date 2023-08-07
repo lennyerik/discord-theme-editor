@@ -4,7 +4,9 @@
 <style type="text/css">
 	.st0{fill:#7C7C7C;}
 	.st1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st2{fill:#3C4544;}
+	.background-tertiary{fill:#1f2023;}
+	.header-primary{stroke:#dadde0;}
+	.header-secondary{stroke:#f00;}
 	.st3{fill:#4F5B5A;}
 	.st4{fill:#008569;}
 	.st5{fill:#88503C;}
@@ -19,14 +21,20 @@
 	.st14{fill:#4F5B5A;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st15{fill:#4E5A5A;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st16{fill:#BAAAF2;}
-	.st17{fill:#2C3131;}
+</style>
+<style>
+	.line{
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-miterlimit: 10;
+	}
 </style>
 <g>
 	<g id="stage">
 		<g id="layer1_1">
 			<path id="Path_1" class="st0" d="M0,473V13h675v460H0z"/>
 			<path id="Path_1_00000176011819200021817760000008480333058625689275_" class="st1" d="M51,17"/>
-			<path id="Path_1_00000137116263465062818280000003006080001015062922_" class="st2" d="M0,473V13h45v460H0z"/>
+			<path id="Path_1_00000137116263465062818280000003006080001015062922_" class="background-tertiary" d="M0,473V13h45v460H0z"/>
 			<path id="Path_1_00000098187880722587595390000006472345294401486261_" class="st3" d="M45,441V13h98v428H45z"/>
 			<path id="Path_1_00000013881872803032976530000001086697552688726714_" class="st4" d="M7,40c0-8.8,7.2-16,16-16s16,7.2,16,16
 				s-7.2,16-16,16S7,48.8,7,40z"/>
@@ -42,12 +50,12 @@
 			<path id="Path_1_00000114064667977725519450000012472559321395681953_" class="st9" d="M45,473v-32h98v32H45z"/>
 			<path id="Path_1_00000023973065878347755000000012255584929111771566_" class="st1" d="M92,288"/>
 			<path id="Path_1_00000107548923504444158670000008420478573207328434_" class="st10" d="M143,36.4V13h532v23.4H143z"/>
-			<path id="Path_1_00000033359992947431337280000000572066735208193171_" class="st2" d="M0,13V-1h675v14H0z"/>
+			<path id="Path_1_00000033359992947431337280000000572066735208193171_" class="background-tertiary" d="M0,13V-1h675v14H0z"/>
 			<path id="Path_1_00000070106584139330434360000013183970019624983734_" class="st11" d="M555,473V36.4h120V473H555z"/>
 			<path id="Path_1_00000085937989390651343440000012653811194345437343_" class="st12" d="M45,38l630-2"/>
 			<path id="Path_1_00000079481958771682833520000003651671656485155714_" class="st5" d="M49,456.5c0-5.8,4.7-10.5,10.5-10.5
 				S70,450.7,70,456.5S65.3,467,59.5,467S49,462.3,49,456.5z"/>
-			<path id="Path_1_00000078013726973903907670000017128110809130673562_" class="st13" d="M77,452h41"/>
+			<path id="Path_1_00000078013726973903907670000017128110809130673562_" class="header-primary line" d="M77,452h41"/>
 			<path id="Path_1_00000056408812992140678140000002497408860516235144_" class="st13" d="M77,461h34"/>
 			<path id="Path_1_00000031912496406830246680000004318619049472236450_" class="st14" d="M72,63h52"/>
 			<path id="Path_1_00000075122390921051073370000010221150014945916310_" class="st14" d="M59,49h66"/>
@@ -88,7 +96,7 @@
 			</g>
 			<path id="Path_1_00000116951981870426351740000012097710903059289775_" class="st15" d="M64,25h59"/>
 			<path id="Path_1_00000114066864096435198490000015725647364218465188_" class="st15" d="M160,25h73"/>
-			<path id="Path_1_00000145036525477064180620000011711483846293928106_" class="st17" d="M577,28v-8h47v8H577z"/>
+			<path id="Path_1_00000145036525477064180620000011711483846293928106_" class="background-tertiary" d="M577,28v-8h47v8H577z"/>
 		</g>
 	</g>
 </g>

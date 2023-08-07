@@ -4,9 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+slint = "1.1.1"
 angular-units = { version = "0.2.4", default-features = false }
 prisma = { version = "0.1.1", default-features = false }
-slint = "1.1.1"
+rfd = { version = "0.11.4" }
+serde_json = "1.0.104"
+serde = { version = "1.0.182", features = ["derive"] }
+i-slint-core = { version = "1.1.1", features = ["serde"] }
 
 [build-dependencies]
 slint-build = "1.1.0"
