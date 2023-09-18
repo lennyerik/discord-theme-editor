@@ -15,6 +15,8 @@ export component CSSProperty {
 
     in property <length> window-height;
 
+    callback changed();
+
     VerticalBox {
         alignment: start;
         Text {
@@ -29,6 +31,7 @@ export component CSSProperty {
                 text <=> custom_css_value;
                 font-size: 10pt;
                 placeholder-text: "CSS Property";
+                edited => { changed(); }
             }
             if !custom-css-active : Rectangle {
                 min-width: 100px;
@@ -58,6 +61,7 @@ export component CSSProperty {
                         hue <=> colour-h;
                         saturation <=> colour-s;
                         value <=> colour-v;
+                        changed => { changed(); }
                     }
                 }
             }
@@ -65,12 +69,7 @@ export component CSSProperty {
                 icon: custom-css-active ? @image-url("../res/palette.svg") : @image-url("../res/pen.svg");
                 clicked => {
                     custom-css-active = !custom-css-active;
-                    if (custom-css-active) {
-                        custom-css-value = "hsv(" +
-                            round(colour-h * 360) +", " +
-                            round(colour-s * 100) + ", " +
-                            round(colour-v * 100) + ")";
-                    }
+                    changed();
                 }
                 horizontal-stretch: 0;
             }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 675 473" style="enable-background:new 0 0 675 473;" xml:space="preserve">
+<defs>
+	{!!!GENERATED_DEFS!!!}
+</defs>
 <style type="text/css">
-	.st0{fill:#7C7C7C;}
+	{!!!GENERATED_CSS!!!}
+	/* .st0{fill:#7C7C7C;} */
 	.st1{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.background-tertiary{fill:#1f2023;}
-	.header-primary{stroke:#dadde0;}
-	.header-secondary{stroke:#f00;}
-	.st3{fill:#4F5B5A;}
 	.st4{fill:#008569;}
 	.st5{fill:#88503C;}
 	.st6{fill:#BC6386;}
@@ -15,27 +15,21 @@
 	.st8{fill:#FF0000;fill-opacity:0;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st9{fill:#3D4444;}
 	.st10{fill:#626D6D;}
-	.st11{fill:#626C6C;}
 	.st12{fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st13{fill:#008569;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st14{fill:#4F5B5A;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st15{fill:#4E5A5A;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st13n{stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.stn15{stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st16{fill:#BAAAF2;}
-</style>
-<style>
-	.line{
-		stroke-linecap: round;
-		stroke-linejoin: round;
-		stroke-miterlimit: 10;
-	}
 </style>
 <g>
 	<g id="stage">
 		<g id="layer1_1">
-			<path id="Path_1" class="st0" d="M0,473V13h675v460H0z"/>
+			<path id="Path_1" class="background-primary" d="M0,473V13h675v460H0z"/>
 			<path id="Path_1_00000176011819200021817760000008480333058625689275_" class="st1" d="M51,17"/>
 			<path id="Path_1_00000137116263465062818280000003006080001015062922_" class="background-tertiary" d="M0,473V13h45v460H0z"/>
-			<path id="Path_1_00000098187880722587595390000006472345294401486261_" class="st3" d="M45,441V13h98v428H45z"/>
+			<path id="Path_1_00000098187880722587595390000006472345294401486261_" class="background-secondary" d="M45,441V13h98v428H45z"/>
 			<path id="Path_1_00000013881872803032976530000001086697552688726714_" class="st4" d="M7,40c0-8.8,7.2-16,16-16s16,7.2,16,16
 				s-7.2,16-16,16S7,48.8,7,40z"/>
 			<path id="Path_1_00000152225450341432716290000000502566829484183711_" class="st5" d="M7,83c0-8.8,7.2-16,16-16s16,7.2,16,16
@@ -47,55 +41,50 @@
 			<path id="Path_1_00000091004581040763790320000000564457547787540365_" class="st6" d="M7,215c0-8.8,7.2-16,16-16s16,7.2,16,16
 				s-7.2,16-16,16S7,223.8,7,215z"/>
 			<path id="Path_1_00000110435925738046217480000005174322166616879750_" class="st8" d="M746-252v-1h1v1H746z"/>
-			<path id="Path_1_00000114064667977725519450000012472559321395681953_" class="st9" d="M45,473v-32h98v32H45z"/>
+			<path id="Path_1_00000114064667977725519450000012472559321395681953_" class="background-secondary-alt" d="M45,473v-32h98v32H45z"/>
 			<path id="Path_1_00000023973065878347755000000012255584929111771566_" class="st1" d="M92,288"/>
-			<path id="Path_1_00000107548923504444158670000008420478573207328434_" class="st10" d="M143,36.4V13h532v23.4H143z"/>
+			<path id="Path_1_00000107548923504444158670000008420478573207328434_" class="background-primary" d="M143,36.4V13h532v23.4H143z"/>
 			<path id="Path_1_00000033359992947431337280000000572066735208193171_" class="background-tertiary" d="M0,13V-1h675v14H0z"/>
-			<path id="Path_1_00000070106584139330434360000013183970019624983734_" class="st11" d="M555,473V36.4h120V473H555z"/>
+			<path id="Path_1_00000070106584139330434360000013183970019624983734_" class="background-secondary" d="M555,473V36.4h120V473H555z"/>
 			<path id="Path_1_00000085937989390651343440000012653811194345437343_" class="st12" d="M45,38l630-2"/>
 			<path id="Path_1_00000079481958771682833520000003651671656485155714_" class="st5" d="M49,456.5c0-5.8,4.7-10.5,10.5-10.5
 				S70,450.7,70,456.5S65.3,467,59.5,467S49,462.3,49,456.5z"/>
 			<path id="Path_1_00000078013726973903907670000017128110809130673562_" class="header-primary line" d="M77,452h41"/>
-			<path id="Path_1_00000056408812992140678140000002497408860516235144_" class="st13" d="M77,461h34"/>
-			<path id="Path_1_00000031912496406830246680000004318619049472236450_" class="st14" d="M72,63h52"/>
-			<path id="Path_1_00000075122390921051073370000010221150014945916310_" class="st14" d="M59,49h66"/>
-			<path id="Path_1_00000129894942983990628580000014467805663071817401_" class="st14" d="M59,83h63"/>
-			<path id="Path_1_00000137815271301322006770000015490148944436784570_" class="st14" d="M70,98h52"/>
-			<path id="Path_1_00000113351198357789676000000012067660401160813706_" class="st14" d="M70,113h52"/>
-			<path id="Path_1_00000049903211792980555650000007974415110153095846_" class="st14" d="M59,135h63"/>
-			<path id="Path_1_00000031926120916457101490000012537626745785440170_" class="st14" d="M69.5,150h52"/>
-			<g>
-				<path id="Path_1_00000140701112097939196710000010890460909856173457_" class="st4" d="M569,62.5c0-5.8,4.7-10.5,10.5-10.5
-					S590,56.7,590,62.5S585.3,73,579.5,73S569,68.3,569,62.5z"/>
-				<path id="Path_1_00000032608471320787334620000006632040181668122761_" class="st15" d="M600,62h48"/>
-			</g>
+			<path id="Path_1_00000056408812992140678140000002497408860516235144_" class="stn13 header-secondary" d="M77,461h34"/>
+			<path id="Path_1_00000031912496406830246680000004318619049472236450_" class="stn13 channels-default" d="M72,63h52"/>
+			<path id="Path_1_00000075122390921051073370000010221150014945916310_" class="stn13 channels-default" d="M59,49h66"/>
+			<path id="Path_1_00000129894942983990628580000014467805663071817401_" class="stn13 channels-default" d="M59,83h63"/>
+			<path id="Path_1_00000137815271301322006770000015490148944436784570_" class="stn13 channels-default" d="M70,98h52"/>
+			<path id="Path_1_00000113351198357789676000000012067660401160813706_" class="stn13 channels-default" d="M70,113h52"/>
+			<path id="Path_1_00000049903211792980555650000007974415110153095846_" class="stn13 channels-default" d="M59,135h63"/>
+			<path id="Path_1_00000031926120916457101490000012537626745785440170_" class="stn13 channels-default" d="M69.5,150h52"/>
 			<g>
 				<path id="Path_1_1" class="st4" d="M569,62.5c0-5.8,4.7-10.5,10.5-10.5S590,56.7,590,62.5S585.3,73,579.5,73S569,68.3,569,62.5z
 					"/>
-				<path id="Path_1_1_00000036972825689563706040000012658607709993132973_" class="st15" d="M600,62h48"/>
+				<path id="Path_1_1_00000036972825689563706040000012658607709993132973_" class="stn15 channels-default" d="M600,62h48"/>
 			</g>
 			<g>
 				<path id="Path_1_1_1" class="st16" d="M569,96.5c0-5.8,4.7-10.5,10.5-10.5S590,90.7,590,96.5s-4.7,10.5-10.5,10.5
 					S569,102.3,569,96.5z"/>
-				<path id="Path_1_1_1_00000119098664387237760560000004253745807630536095_" class="st15" d="M600,96h48"/>
+				<path id="Path_1_1_1_00000119098664387237760560000004253745807630536095_" class="stn15 channels-default" d="M600,96h48"/>
 			</g>
 			<g>
 				<path id="Path_1_1_1_1" class="st6" d="M569,130.5c0-5.8,4.7-10.5,10.5-10.5s10.5,4.7,10.5,10.5s-4.7,10.5-10.5,10.5
 					S569,136.3,569,130.5z"/>
-				<path id="Path_1_1_1_1_00000181770773155072654280000010348754879141144220_" class="st15" d="M600,130h48"/>
+				<path id="Path_1_1_1_1_00000181770773155072654280000010348754879141144220_" class="st15n channels-default" d="M600,130h48"/>
 			</g>
 			<g>
 				<path id="Path_1_1_1_1_1" class="st7" d="M569,166.5c0-5.8,4.7-10.5,10.5-10.5s10.5,4.7,10.5,10.5s-4.7,10.5-10.5,10.5
 					S569,172.3,569,166.5z"/>
-				<path id="Path_1_1_1_1_1_00000008144156978180181750000011210055822674746302_" class="st15" d="M600,166h48"/>
+				<path id="Path_1_1_1_1_1_00000008144156978180181750000011210055822674746302_" class="stn15 channels-default" d="M600,166h48"/>
 			</g>
 			<g>
 				<path id="Path_1_1_1_1_1_1" class="st4" d="M569,202.5c0-5.8,4.7-10.5,10.5-10.5s10.5,4.7,10.5,10.5s-4.7,10.5-10.5,10.5
 					S569,208.3,569,202.5z"/>
-				<path id="Path_1_1_1_1_1_1_00000013194075969996664850000004449367276333714861_" class="st15" d="M600,202h48"/>
+				<path id="Path_1_1_1_1_1_1_00000013194075969996664850000004449367276333714861_" class="stn15 channels-default" d="M600,202h48"/>
 			</g>
-			<path id="Path_1_00000116951981870426351740000012097710903059289775_" class="st15" d="M64,25h59"/>
-			<path id="Path_1_00000114066864096435198490000015725647364218465188_" class="st15" d="M160,25h73"/>
+			<path id="Path_1_00000116951981870426351740000012097710903059289775_" class="stn15 header-primary" d="M64,25h59"/>
+			<path id="Path_1_00000114066864096435198490000015725647364218465188_" class="stn15 header-primary" d="M160,25h73"/>
 			<path id="Path_1_00000145036525477064180620000011711483846293928106_" class="background-tertiary" d="M577,28v-8h47v8H577z"/>
 		</g>
 	</g>

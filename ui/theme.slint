@@ -15,19 +15,21 @@ export struct CSSThemeProperty {
 export struct Theme {
     background-primary: CSSThemeProperty,
     background-secondary: CSSThemeProperty,
+    background-secondary-alt: CSSThemeProperty,
     background-tertiary: CSSThemeProperty,
-    text-primary: CSSThemeProperty,
+    text-normal: CSSThemeProperty,
     text-muted: CSSThemeProperty,
     text-hyperlink: CSSThemeProperty,
     header-primary: CSSThemeProperty,
     header-secondary: CSSThemeProperty,
+    channels-default: CSSThemeProperty,
 }
 
 export component ThemeControls inherits ScrollView {
     // Respect the content's min width and account for the scrollbar
     min-width: content.min-width + 30px;
 
-    // TODO: I don't think there currently is a better way to do this in slint
+    // TODO: I don't think there is a better way to do this in slint as of yet
 
     out property <Theme> theme: {
         background-primary: {
@@ -44,6 +46,13 @@ export component ThemeControls inherits ScrollView {
             custom-css-active: background-secondary.custom-css-active,
             custom-css-value: background-secondary.custom-css-value,
         },
+        background-secondary-alt: {
+            colour-h: background-secondary-alt.colour-h,
+            colour-s: background-secondary-alt.colour-s,
+            colour-v: background-secondary-alt.colour-v,
+            custom-css-active: background-secondary-alt.custom-css-active,
+            custom-css-value: background-secondary-alt.custom-css-value,
+        },
         background-tertiary: {
             colour-h: background-tertiary.colour-h,
             colour-s: background-tertiary.colour-s,
@@ -51,12 +60,12 @@ export component ThemeControls inherits ScrollView {
             custom-css-active: background-tertiary.custom-css-active,
             custom-css-value: background-tertiary.custom-css-value,
         },
-        text-primary: {
-            colour-h: text-primary.colour-h,
-            colour-s: text-primary.colour-s,
-            colour-v: text-primary.colour-v,
-            custom-css-active: text-primary.custom-css-active,
-            custom-css-value: text-primary.custom-css-value,
+        text-normal: {
+            colour-h: text-normal.colour-h,
+            colour-s: text-normal.colour-s,
+            colour-v: text-normal.colour-v,
+            custom-css-active: text-normal.custom-css-active,
+            custom-css-value: text-normal.custom-css-value,
         },
         text-muted: {
             colour-h: text-muted.colour-h,
@@ -86,6 +95,13 @@ export component ThemeControls inherits ScrollView {
             custom-css-active: header-secondary.custom-css-active,
             custom-css-value: header-secondary.custom-css-value,
         },
+        channels-default: {
+            colour-h: channels-default.colour-h,
+            colour-s: channels-default.colour-s,
+            colour-v: channels-default.colour-v,
+            custom-css-active: channels-default.custom-css-active,
+            custom-css-value: channels-default.custom-css-value,
+        },
     };
 
     public function set-theme(theme: Theme) {
@@ -101,17 +117,23 @@ export component ThemeControls inherits ScrollView {
         background-secondary.custom-css-active = theme.background-secondary.custom-css-active;
         background-secondary.custom-css-value = theme.background-secondary.custom-css-value;
 
+        background-secondary-alt.colour-h = theme.background-secondary-alt.colour-h;
+        background-secondary-alt.colour-s = theme.background-secondary-alt.colour-s;
+        background-secondary-alt.colour-v = theme.background-secondary-alt.colour-v;
+        background-secondary-alt.custom-css-active = theme.background-secondary-alt.custom-css-active;
+        background-secondary-alt.custom-css-value = theme.background-secondary-alt.custom-css-value;
+
         background-tertiary.colour-h = theme.background-tertiary.colour-h;
         background-tertiary.colour-s = theme.background-tertiary.colour-s;
         background-tertiary.colour-v = theme.background-tertiary.colour-v;
         background-tertiary.custom-css-active = theme.background-tertiary.custom-css-active;
         background-tertiary.custom-css-value = theme.background-tertiary.custom-css-value;
 
-        text-primary.colour-h = theme.text-primary.colour-h;
-        text-primary.colour-s = theme.text-primary.colour-s;
-        text-primary.colour-v = theme.text-primary.colour-v;
-        text-primary.custom-css-active = theme.text-primary.custom-css-active;
-        text-primary.custom-css-value = theme.text-primary.custom-css-value;
+        text-normal.colour-h = theme.text-normal.colour-h;
+        text-normal.colour-s = theme.text-normal.colour-s;
+        text-normal.colour-v = theme.text-normal.colour-v;
+        text-normal.custom-css-active = theme.text-normal.custom-css-active;
+        text-normal.custom-css-value = theme.text-normal.custom-css-value;
 
         text-muted.colour-h = theme.text-muted.colour-h;
         text-muted.colour-s = theme.text-muted.colour-s;
@@ -136,9 +158,17 @@ export component ThemeControls inherits ScrollView {
         header-secondary.colour-v = theme.header-secondary.colour-v;
         header-secondary.custom-css-active = theme.header-secondary.custom-css-active;
         header-secondary.custom-css-value = theme.header-secondary.custom-css-value;
+
+        channels-default.colour-h = theme.channels-default.colour-h;
+        channels-default.colour-s = theme.channels-default.colour-s;
+        channels-default.colour-v = theme.channels-default.colour-v;
+        channels-default.custom-css-active = theme.channels-default.custom-css-active;
+        channels-default.custom-css-value = theme.channels-default.custom-css-value;
     }
 
     in property <length> window-height;
+
+    callback changed();
 
     content := VerticalBox {
         max-width: 500px;
@@ -147,34 +177,52 @@ export component ThemeControls inherits ScrollView {
         background-primary := CSSProperty {
             name: "Background Primary";
             window-height: window-height;
+            changed => { changed(); }
         }
         background-secondary := CSSProperty {
             name: "Background Secondary";
             window-height: window-height;
+            changed => { changed(); }
+        }
+        background-secondary-alt := CSSProperty {
+            name: "Background Secondary Alt";
+            window-height: window-height;
+            changed => { changed(); }
         }
         background-tertiary := CSSProperty {
             name: "Background Tertiary";
             window-height: window-height;
+            changed => { changed(); }
         }
-        text-primary := CSSProperty {
-            name: "Text Primary";
+        text-normal := CSSProperty {
+            name: "Text Normal";
             window-height: window-height;
+            changed => { changed(); }
         }
         text-muted := CSSProperty {
             name: "Text Muted";
             window-height: window-height;
+            changed => { changed(); }
         }
         text-hyperlink := CSSProperty {
             name: "Text Hyperlink";
             window-height: window-height;
+            changed => { changed(); }
         }
         header-primary := CSSProperty {
             name: "Header Primary";
             window-height: window-height;
+            changed => { changed(); }
         }
         header-secondary := CSSProperty {
             name: "Header Secondary";
             window-height: window-height;
+            changed => { changed(); }
+        }
+        channels-default:= CSSProperty {
+            name: "Channels Default";
+            window-height: window-height;
+            changed => { changed(); }
         }
     }
 }

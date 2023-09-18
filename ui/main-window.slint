@@ -11,11 +11,14 @@ export component MainWindow inherits Window {
 
     property <bool> show-preview: true;
     property <string> error-message: "An error has occurred";
+    property <image> preview-image;
 
     callback reset-theme-to-default();
     callback load-theme();
     callback save-theme(Theme);
     callback apply-theme(Theme);
+
+    pure callback generate-preview(Theme) -> image;
 
     public function show-error-dialog(message: string) {
         error-message = message;
@@ -24,13 +27,14 @@ export component MainWindow inherits Window {
 
     public function set-current-theme(theme: Theme) {
         theme-controls.set-theme(theme);
+        preview-image = generate-preview(theme-controls.theme);
     }
 
     error-popup := PopupWindow {
-        width: 200px;
-        height: 100px;
-        x: root.width / 2 - 100px;
-        y: root.height / 2 - 50px;
+        width: 300px;
+        height: 150px;
+        x: root.width / 2 - 150px;
+        y: root.height / 2 - 75px;
         close-on-click: false;
 
         Rectangle {
@@ -41,10 +45,11 @@ export component MainWindow inherits Window {
         Dialog {
             width: 100%;
             height: 100%;
-            padding-top: 15px;
+            padding: 15px;
             Text {
                 text: error-message;
                 font-size: 12pt;
+                wrap: word-wrap;
             }
             StandardButton {
                 kind: ok;
@@ -56,12 +61,13 @@ export component MainWindow inherits Window {
     HorizontalBox {
         theme-controls := ThemeControls {
             window-height: root.height;
+            changed => { preview-image = generate-preview(theme-controls.theme); }
         } 
 
         VerticalBox {
             horizontal-stretch: 1;
             if show-preview : Image {
-                source: @image-url("../res/discord.svg");
+                source: preview-image;
             }
             VerticalBox {
                 alignment: end;
