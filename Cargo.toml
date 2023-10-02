@@ -13,7 +13,7 @@ serde = { version = "1.0.188", features = ["derive"] }
 i-slint-core = { version = "1.2.0", features = ["serde"] }
 asar = "0.2.0"
 
-[target.'cfg(linux)'.dependencies]
+[target.'cfg(target_os = "linux")'.dependencies]
 which = "4.4.2"
 
 [build-dependencies]

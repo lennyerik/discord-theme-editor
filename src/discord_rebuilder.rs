@@ -97,9 +97,16 @@ pub fn reset_theme() -> Result<(), &'static str> {
 
 #[cfg(target_os = "linux")]
 fn discord_asar_path() -> Result<PathBuf, &'static str> {
-    let binary_path =
-        which::which("discord").map_err(|_| "Could not find discord binary on PATH")?;
-    binary_path.with_file_name("app.asar")
+    let mut path = which::which("discord")
+        .map_err(|_| "Could not find discord binary on PATH")?
+        .canonicalize()
+        .map_err(|_| "Could not canonicalise path of discord binary")?
+        .parent()
+        .ok_or("ASDF")?
+        .to_path_buf();
+    path.push("resources");
+    path.push("app.asar");
+    Ok(path)
 }
 
 #[cfg(target_os = "windows")]
@@ -115,7 +122,8 @@ fn discord_asar_path() -> Result<PathBuf, &'static str> {
     {
         if entry.file_name().to_string_lossy().starts_with("app-") {
             let mut path = entry.path();
-            path.push("resources\\app.asar");
+            path.push("resources");
+            path.push("app.asar");
             return Ok(path);
         }
     }
