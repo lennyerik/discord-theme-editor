@@ -8,7 +8,7 @@ pub fn apply_theme(theme: &Theme) -> Result<(), &'static str> {
     let backup_path = asar_path.with_file_name("app.asar.bak");
 
     if !asar_path.exists() {
-        return Err("Could not find Discord app.asar file in resources folder");
+        return Err("Could not find Discord app.asar");
     }
 
     if !backup_path.exists() {
@@ -33,7 +33,7 @@ pub fn apply_theme(theme: &Theme) -> Result<(), &'static str> {
                         --background-tertiary: {} !important;
                         --text-normal: {} !important;
                         --text-muted: {} !important;
-                        --text-hyperlink: {} !important;
+                        --text-link: {} !important;
                         --header-primary: {} !important;
                         --header-secondary: {} !important;
                         --channels-default: {} !important;
@@ -58,7 +58,6 @@ pub fn apply_theme(theme: &Theme) -> Result<(), &'static str> {
                     console.log('Injected Discord Theme CSS');
                 });
             });
-            console.log('HELLO!');
             "#;
             asar_writer
                 .write_file(
@@ -109,8 +108,18 @@ fn discord_asar_path() -> Result<PathBuf, &'static str> {
         std::env::var("LOCALAPPDATA")
             .map_err(|_| "Failed to get LOCALAPPDATA path environment variable")?,
     );
-    path.push("Discord\\app-1.0.9017\\resources\\app.asar");
-    Ok(path)
+    path.push("Discord");
+    for entry in fs::read_dir(path)
+        .map_err(|_| "Failed to read discord app directory")?
+        .flatten()
+    {
+        if entry.file_name().to_string_lossy().starts_with("app-") {
+            let mut path = entry.path();
+            path.push("resources\\app.asar");
+            return Ok(path);
+        }
+    }
+    Err("Failed to find Discord app directory")
 }
 
 #[cfg(target_os = "macos")]
