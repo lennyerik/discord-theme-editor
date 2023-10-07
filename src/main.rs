@@ -6,6 +6,7 @@
 
 use std::fs;
 
+mod css_gradients;
 mod discord_rebuilder;
 
 slint::include_modules!();
