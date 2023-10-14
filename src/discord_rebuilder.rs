@@ -102,7 +102,7 @@ fn discord_asar_path() -> Result<PathBuf, &'static str> {
         .canonicalize()
         .map_err(|_| "Could not canonicalise path of discord binary")?
         .parent()
-        .ok_or("ASDF")?
+        .ok_or("The discord binary seems to be in the root directory")?
         .to_path_buf();
     path.push("resources");
     path.push("app.asar");
