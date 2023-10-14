@@ -1,6 +1,6 @@
 pub fn css_to_svg_def(css_value: &str) -> Option<String> {
     let gradient = parse_css_gradient(css_value)?;
-    None
+    todo!("css_to_svg_def {:?}", gradient)
 }
 
 fn parse_css_gradient(css_value: &str) -> Option<Gradient> {
@@ -32,11 +32,49 @@ fn parse_css_gradient(css_value: &str) -> Option<Gradient> {
 }
 
 fn parse_direction(dir_value: &str) -> Option<Direction> {
-    todo!()
+    let mut parts = dir_value.split_whitespace();
+
+    let first = parts.next()?;
+    let direction = if first == "to" {
+        match (parts.next()?, parts.next()) {
+            ("left", None) => Some(Direction::Left),
+            ("right", None) => Some(Direction::Right),
+            ("top", None) => Some(Direction::Top),
+            ("bottom", None) => Some(Direction::Bottom),
+            ("top", Some("left")) => Some(Direction::TopLeft),
+            ("top", Some("right")) => Some(Direction::TopRight),
+            ("bottom", Some("left")) => Some(Direction::BottomLeft),
+            ("bottom", Some("right")) => Some(Direction::BottomRight),
+            _ => None,
+        }
+    } else if first.ends_with("deg")
+        || first.ends_with("rad")
+        || first.ends_with("grad")
+        || first.ends_with("turn")
+    {
+        Some(Direction::Rotation(first))
+    } else {
+        None
+    };
+
+    // Check that there are no more parts left
+    if parts.next().is_none() {
+        direction
+    } else {
+        None
+    }
 }
 
 fn parse_stop(stop_value: &str) -> Option<Stop> {
-    todo!()
+    let mut parts = stop_value.split_whitespace();
+    let colour = parts.next()?;
+    let offset = parts.next();
+
+    if parts.next().is_none() {
+        Some(Stop { offset, colour })
+    } else {
+        None
+    }
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -103,22 +141,22 @@ mod tests {
     #[test]
     fn parse_linear_gradient_with_direction() {
         assert_eq!(
-            parse_css_gradient("linear-gradient(red, blue, green)"),
+            parse_css_gradient("linear-gradient(to top left, #ff0000, #00ff00 85%, #0000ff)"),
             Some(Gradient {
                 r#type: GradientType::Linear,
-                direction: None,
+                direction: Some(Direction::TopLeft),
                 stops: vec!(
                     Stop {
                         offset: None,
-                        colour: "red"
+                        colour: "#ff0000"
+                    },
+                    Stop {
+                        offset: Some("85%"),
+                        colour: "#00ff00"
                     },
                     Stop {
                         offset: None,
-                        colour: "blue"
-                    },
-                    Stop {
-                        offset: None,
-                        colour: "green"
+                        colour: "#0000ff"
                     },
                 ),
             })
@@ -179,10 +217,7 @@ mod tests {
 
     #[test]
     fn parse_rotational_direction() {
-        assert_eq!(
-            parse_direction("45deg"),
-            Some(Direction::Rotation("123deg"))
-        );
+        assert_eq!(parse_direction("45deg"), Some(Direction::Rotation("45deg")));
         assert_eq!(
             parse_direction("3.1416rad"),
             Some(Direction::Rotation("3.1416rad"))
@@ -215,7 +250,7 @@ mod tests {
             })
         );
 
-        assert_eq!(parse_stop("red green"), None);
+        assert_eq!(parse_stop("red 50% blue"), None);
     }
 
     #[test]
